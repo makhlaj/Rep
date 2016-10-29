@@ -11,10 +11,6 @@ public class ArrayTaskList extends AbstractTaskList {
 		return taskList;
 	}
 	
-	private void setTaskList(int i) {
-		taskList = new Task[i];
-	}
-	
 	public void add(Task task) {
 		if(task != null){
 			for(int i = 0; i < taskList.length; i++) {
@@ -29,19 +25,7 @@ public class ArrayTaskList extends AbstractTaskList {
 				}
 			}
 		}
-	}
-	
-	private void taskListCloningAndExpansion() {
-		Task[] newList = new Task[taskList.length];
-		for(int j = 0; j < newList.length; j++) {
-			Task cloned = taskList[j].clone();
-			newList[j] = cloned;
-		}		
-		setTaskList(newList.length + taskListExpansion);
-		for(int l = 0; l < newList.length; l++) {
-			Task clonedTwo = newList[l].clone();
-			taskList[l] = clonedTwo;
-		}
+		else System.out.println("This task is NULL");
 	}
 	
 	public void remove(Task task) {
@@ -64,12 +48,56 @@ public class ArrayTaskList extends AbstractTaskList {
 		return taskList[index];
 	}
 	
+	public Task[] incoming(int from, int to) {
+		Task[] newArr = new Task[getNeededLengthOfIncomingList(from,to)];
+			for(Task t : taskList) {
+				if(t != null && t.isActive()) {
+					if(t.getStartTime() > from && t.getStartTime() <= to) {
+						addTaskToIncomingList(newArr,t);
+					} else if(t.isRepeated()) {
+						int res=t.getStartTime() + t.getRepeatInterval();
+						if(res > from && res <= to) {
+							addTaskToIncomingList(newArr,t);
+						} else {
+							while(res < t.getEndTime()) {
+								res += t.getRepeatInterval();
+								if ((t.getEndTime() - res) < 0) {
+									break;
+								} else if(res > from && res <= to) {
+									addTaskToIncomingList(newArr,t);
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		return newArr;
+	}
+	
+	private void setTaskList(int i) {
+		taskList = new Task[i];
+	}
+	
 	private void addTaskToIncomingList(Task[] arr, Task t) {
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i] == null) {
 				arr[i] = t;
 				break;
 			}
+		}
+	}
+	
+	private void taskListCloningAndExpansion() {
+		Task[] newList = new Task[taskList.length];
+		for(int j = 0; j < newList.length; j++) {
+			Task cloned = taskList[j].clone();
+			newList[j] = cloned;
+		}		
+		setTaskList(newList.length + taskListExpansion);
+		for(int l = 0; l < newList.length; l++) {
+			Task clonedTwo = newList[l].clone();
+			taskList[l] = clonedTwo;
 		}
 	}
 	
@@ -98,32 +126,5 @@ public class ArrayTaskList extends AbstractTaskList {
 			}
 		}
 		return n;
-	}
-	
-	public Task[] incoming(int from, int to) {
-		Task[] newArr = new Task[getNeededLengthOfIncomingList(from,to)];
-			for(Task t : taskList) {
-				if(t != null && t.isActive()) {
-					if(t.getStartTime() > from && t.getStartTime() <= to) {
-						addTaskToIncomingList(newArr,t);
-					} else if(t.isRepeated()) {
-						int res=t.getStartTime() + t.getRepeatInterval();
-						if(res > from && res <= to) {
-							addTaskToIncomingList(newArr,t);
-						} else {
-							while(res < t.getEndTime()) {
-								res += t.getRepeatInterval();
-								if ((t.getEndTime() - res) < 0) {
-									break;
-								} else if(res > from && res <= to) {
-									addTaskToIncomingList(newArr,t);
-									break;
-								}
-							}
-						}
-					}
-				}
-			}
-		return newArr;
 	}
 }

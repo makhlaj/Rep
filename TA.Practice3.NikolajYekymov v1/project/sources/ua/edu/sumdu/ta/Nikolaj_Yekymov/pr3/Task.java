@@ -218,12 +218,13 @@ public class Task implements Cloneable {
 		else return false;
 		if (getTime() != objTask.getTime() || getStartTime() != objTask.getStartTime() || 
 			getEndTime() != objTask.getEndTime() || getRepeatInterval() != objTask.getRepeatInterval() ||
-			isRepeated() != objTask.isRepeated() || getTitle() != objTask.getTitle())
+			isRepeated() != objTask.isRepeated() || isActive() != objTask.isActive() ||
+			(getTitle().compareTo(objTask.getTitle()) != 0))
 			return false;
 		return true;
 	}
 	
 	public static void main(String[] args) {
-		
+	
 	}
 }

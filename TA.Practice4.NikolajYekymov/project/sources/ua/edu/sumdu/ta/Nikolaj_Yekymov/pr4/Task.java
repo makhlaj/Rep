@@ -1,6 +1,7 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr3;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr4;
 
-import ua.edu.sumdu.ta.Nikolaj_Yekymov.pr3.ArrayTaskList;
+import ua.edu.sumdu.ta.Nikolaj_Yekymov.pr4.ArrayTaskList;
+import ua.edu.sumdu.ta.Nikolaj_Yekymov.pr4.LinkedTaskList;
 
 /**
  * This class describes the data type "Task", which contains information about the essence of the task, 
@@ -225,6 +226,6 @@ public class Task implements Cloneable {
 	}
 	
 	public static void main(String[] args) {
-	
+		
 	}
 }

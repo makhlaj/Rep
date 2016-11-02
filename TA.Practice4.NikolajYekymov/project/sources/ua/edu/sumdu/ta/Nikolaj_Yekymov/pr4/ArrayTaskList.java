@@ -1,14 +1,18 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr3;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr4;
 
 public class ArrayTaskList extends AbstractTaskList {
+	
+	protected static final int TASK_LIST_EXPANSION = 3;
+	protected static final int LIST_SIZE = 10;
+	public Task[] taskList = new Task[LIST_SIZE];
 		
 	public ArrayTaskList() {
 		
 		listsNumber++;
 	}
 	
-	public Task[] getTaskList() {
-		return taskList;
+	public int getTaskListExpansion() {
+		return TASK_LIST_EXPANSION;
 	}
 	
 	public void add(Task task) {
@@ -16,7 +20,7 @@ public class ArrayTaskList extends AbstractTaskList {
 			for(int i = 0; i < taskList.length; i++) {
 				if(taskList[i] == null) {
 					taskList[i] = task;
-					String s = beginningOfListTaskTitle + taskList[i].getTitle();
+					String s = BEGINNING_OF_LIST_TASK_TITLE + taskList[i].getTitle();
 					taskList[i].setTitle(s);
 					break;
 				}
@@ -24,6 +28,7 @@ public class ArrayTaskList extends AbstractTaskList {
 					taskListCloningAndExpansion();
 				}
 			}
+			size++;
 		}
 		else System.out.println("This task is NULL");
 	}
@@ -33,7 +38,15 @@ public class ArrayTaskList extends AbstractTaskList {
 			for(int i = 0; i < taskList.length; i++) {
 				if(taskList[i] != null) {
 					if(taskList[i].equals(task)) {
+						int a = this.size();
 						taskList[i] = null;
+						for(int j = 0; j < a; j++) {
+							if(taskList[j] == null) {
+								taskList[j] = taskList[j+1];
+								taskList[j+1] = null;	
+							}
+						}
+						size--;
 						break;
 					} else System.out.println("Tasks are not equals");
 				}
@@ -94,7 +107,7 @@ public class ArrayTaskList extends AbstractTaskList {
 			Task cloned = taskList[j].clone();
 			newList[j] = cloned;
 		}		
-		setTaskList(newList.length + taskListExpansion);
+		setTaskList(newList.length + TASK_LIST_EXPANSION);
 		for(int l = 0; l < newList.length; l++) {
 			Task clonedTwo = newList[l].clone();
 			taskList[l] = clonedTwo;

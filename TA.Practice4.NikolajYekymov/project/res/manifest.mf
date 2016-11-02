@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Created-By: Yekimov
-Main-Class: ua.edu.sumdu.ta.Nikolaj_Yekymov.pr4.Task

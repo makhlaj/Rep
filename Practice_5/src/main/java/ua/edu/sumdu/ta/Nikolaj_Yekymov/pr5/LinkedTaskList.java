@@ -12,7 +12,7 @@ public class LinkedTaskList extends AbstractTaskList {
 	
 	public void add(Task task) {
 		if(task == null)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"add\" method cannot be null");
 		LinkedTaskListNode node = new LinkedTaskListNode(task);
 		if (head == null) {
 			head = node;
@@ -28,7 +28,7 @@ public class LinkedTaskList extends AbstractTaskList {
 	
 	public void remove(Task task) {
 		if(task == null)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"remove\" method cannot be null");
 		LinkedTaskListNode previous = null;
 		LinkedTaskListNode current = head;
 		while (current != null) {
@@ -53,7 +53,7 @@ public class LinkedTaskList extends AbstractTaskList {
 	
 	public Task getTask(int index) {
 		if(index < 0 || size() <= index) 
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("The argument of \"getTask\" method must fulfill the following conditions: >= 0 && < size");
 		int i = 0;
 		LinkedTaskListNode current = head;
 		while (current != null && index != i) {	 

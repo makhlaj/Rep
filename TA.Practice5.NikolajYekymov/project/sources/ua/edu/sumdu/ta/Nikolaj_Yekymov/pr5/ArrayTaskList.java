@@ -17,7 +17,7 @@ public class ArrayTaskList extends AbstractTaskList {
 	
 	public void add(Task task) {
 		if(task == null)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"add\" method cannot be null");
 		for(int i = 0; i < taskList.length; i++) {
 			if(taskList[i] == null) {
 				taskList[i] = task;
@@ -34,7 +34,7 @@ public class ArrayTaskList extends AbstractTaskList {
 	
 	public void remove(Task task) {
 		if(task == null)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"remove\" method cannot be null");
 		for(int i = 0; i < taskList.length; i++) {
 			if(taskList[i] != null) {
 				if(taskList[i].equals(task)) {
@@ -55,7 +55,7 @@ public class ArrayTaskList extends AbstractTaskList {
 
 	public Task getTask(int index) {
 		if(index < 0 || size() <= index)
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("The argument of \"getTask\" method must fulfill the following conditions: >= 0 && < size");
 		return taskList[index];
 	}
 	

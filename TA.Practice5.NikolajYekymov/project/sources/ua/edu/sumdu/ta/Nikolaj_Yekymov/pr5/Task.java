@@ -53,7 +53,7 @@ public class Task implements Cloneable {
 	*/
 	public void setTitle(String title) {
 		if (title == null || title.isEmpty())
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"setTitle\" method cannot be null and empty");
 		this.title = title;
 	}
 	
@@ -80,7 +80,7 @@ public class Task implements Cloneable {
 	*/
 	public void setTime(int time) {
 		if (time < 0)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"setTime\" method cannot be less then zero");
 		isRepeated = false;
 		this.time = time;
 	}
@@ -94,7 +94,7 @@ public class Task implements Cloneable {
 	*/
 	public void setTime(int start, int end, int repeat) {
 		if (start < 0 || start >= end || repeat < 0)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The arguments of \"setTime\" method must fulfill the following conditions: start >= 0 && start < end && repeat >= 0");
 		isRepeated = true;
 		this.start = start;
 		this.end = end;
@@ -160,7 +160,7 @@ public class Task implements Cloneable {
 	public int nextTimeAfter(int currentTime) {
 		int res = -1;
 		if (currentTime < 0)
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The argument of \"nextTimeAfter\" method cannot be less then zero");
 		if (isActive) {
 			if (isRepeated) {
 				if (currentTime >= start && currentTime < end) {

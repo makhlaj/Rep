@@ -4,6 +4,7 @@ public class LinkedTaskListNode {
 	
 	public Task value;
 	public LinkedTaskListNode next;
+	public LinkedTaskListNode previous;
 	
 	public LinkedTaskListNode(Task value)
     {

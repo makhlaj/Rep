@@ -16,11 +16,11 @@ public class LinkedTaskList extends AbstractTaskList {
 		LinkedTaskListNode node = new LinkedTaskListNode(task);
 		if (head == null) {
 			head = node;
-			tail = node;
 		} else {
 			tail.next = node;
-			tail = node;
+			node.previous = tail;
 		}
+		tail = node;
 		String s = BEGINNING_OF_LIST_TASK_TITLE + node.value.getTitle();
 		node.value.setTitle(s);
 		size++;
@@ -29,43 +29,60 @@ public class LinkedTaskList extends AbstractTaskList {
 	public void remove(Task task) {
 		if(task == null)
 			throw new IllegalArgumentException("The argument of \"remove\" method cannot be null");
-		LinkedTaskListNode previous = null;
+		LinkedTaskListNode prev = null;
 		LinkedTaskListNode current = head;
 		while (current != null) {
 			if (current.value.equals(task)) {
-				if (previous != null) {
-					previous.next = current.next;
+				if (prev != null) {
+					prev.next = current.next;
 					if (current.next == null) {
-						tail = previous;
+						tail = prev;
+					} else {
+						current.next.previous = prev;
 					}
+					size--;
 				} else {
-					head = head.next;
-					if (head == null) {
+					if (size != 0) {
+						head = head.next;
+						size--;
+					}
+					if (size == 0) {
 						tail = null;
+					} else {
+						head.previous = null;
 					}
 				}
-				size--;
 			}
-			previous = current;
+			prev = current;
 			current = current.next;
 		}
 	}
 	
 	public Task getTask(int index) {
-		if(index < 0 || size() <= index) 
+		if (index < 0 || size() <= index) 
 			throw new IndexOutOfBoundsException("The argument of \"getTask\" method must fulfill the following conditions: >= 0 && < size");
-		int i = 0;
-		LinkedTaskListNode current = head;
-		while (current != null && index != i) {	 
-			current = current.next;
-			i++;
-		}
-		return current.value;		
+		if (index <= (size-1)/2) {
+			int i = 0;
+			LinkedTaskListNode current = head;
+			while (current != null && index != i) {	 
+				current = current.next;
+				i++;
+			}
+			return current.value;		
+		} else {
+			int j = size-1;
+			LinkedTaskListNode current = tail;
+			while (current != null && index != j) {	 
+				current = current.previous;
+				j--;
+			}
+			return current.value;
+		}		
 	}
 	
 	public Task[] incoming(int from, int to) {
 		Task[] newArr = new Task[size() - 1];
-		LinkedTaskListNode current = head;
+		LinkedTaskListNode current = tail;
 		while (current != null) {
 			if(current.value.isActive()) {
 				if(current.value.getStartTime() > from && current.value.getStartTime() <= to) {
@@ -87,7 +104,7 @@ public class LinkedTaskList extends AbstractTaskList {
 					}	
 				}
 			}
-			current = current.next;
+			current = current.previous;
 		}
 		newArr = incomingListCloning(newArr);
 		return newArr;

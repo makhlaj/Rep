@@ -1,6 +1,8 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr5;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr6;
 
-public class LinkedTaskListNode {
+import java.io.*;
+
+public class LinkedTaskListNode implements Cloneable, Serializable {
 	
 	public Task value;
 	public LinkedTaskListNode next;

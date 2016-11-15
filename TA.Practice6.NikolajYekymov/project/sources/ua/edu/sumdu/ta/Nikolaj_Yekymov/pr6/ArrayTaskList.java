@@ -1,6 +1,9 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr5;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr6;
 
-public class ArrayTaskList extends AbstractTaskList {
+import java.io.*;
+import java.util.*;
+
+public class ArrayTaskList extends AbstractTaskList implements Cloneable, Serializable {
 	
 	protected static final int TASK_LIST_EXPANSION = 3;
 	protected static final int LIST_SIZE = 10;
@@ -9,6 +12,10 @@ public class ArrayTaskList extends AbstractTaskList {
 	public ArrayTaskList() {
 		
 		listsNumber++;
+	}
+	
+	public Iterator<Task> iterator() {
+		return new ArrayListIterator();
 	}
 	
 	public int getTaskListExpansion() {
@@ -22,7 +29,8 @@ public class ArrayTaskList extends AbstractTaskList {
 			if(taskList[i] == null) {
 				taskList[i] = task;
 				String s = BEGINNING_OF_LIST_TASK_TITLE + taskList[i].getTitle();
-				taskList[i].setTitle(s);
+				if(!taskList[i].getTitle().contains(BEGINNING_OF_LIST_TASK_TITLE))
+					taskList[i].setTitle(s);
 				break;
 			}
 			else if((taskList.length - i) == 1 && taskList[i] != null) {
@@ -51,12 +59,6 @@ public class ArrayTaskList extends AbstractTaskList {
 				}
 			}
 		}
-	}
-
-	public Task getTask(int index) {
-		if(index < 0 || size() <= index)
-			throw new IndexOutOfBoundsException("The argument of \"getTask\" method must fulfill the following conditions: >= 0 && < size");
-		return taskList[index];
 	}
 	
 	public Task[] incoming(int from, int to) {
@@ -137,5 +139,24 @@ public class ArrayTaskList extends AbstractTaskList {
 			}
 		}
 		return n;
+	}
+	
+	private class ArrayListIterator implements Iterator<Task> {
+		
+		int index = 0;
+		
+		@Override
+		public boolean hasNext(){
+			if(size == 0) {
+				System.out.println("This List is empty");
+			}
+			boolean result = (index < size)?true:false;
+			return result;
+		}
+		
+		@Override
+		public Task next(){
+			return taskList[index++];
+		}
 	}
 }

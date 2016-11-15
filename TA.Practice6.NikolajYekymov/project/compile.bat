@@ -1,0 +1,2 @@
+javac -classpath lib/junit.jar -sourcepath sources -d classes sources/ua/edu/sumdu/ta/Nikolaj_Yekymov/pr6/Task.java sources/ua/edu/sumdu/ta/Nikolaj_Yekymov/pr6/AbstractTaskList.java sources/ua/edu/sumdu/ta/Nikolaj_Yekymov/pr6/ArrayTaskList.java sources/ua/edu/sumdu/ta/Nikolaj_Yekymov/pr6/LinkedTaskList.java sources/ua/edu/sumdu/ta/Nikolaj_Yekymov/pr6/LinkedTaskListNode.java 
+Pause

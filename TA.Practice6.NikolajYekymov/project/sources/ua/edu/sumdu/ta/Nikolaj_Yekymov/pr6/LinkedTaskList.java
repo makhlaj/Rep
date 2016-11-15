@@ -1,6 +1,9 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr5;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr6;
 
-public class LinkedTaskList extends AbstractTaskList {
+import java.io.*;
+import java.util.*;
+
+public class LinkedTaskList extends AbstractTaskList implements Cloneable, Serializable {
 	
 	private LinkedTaskListNode head;
 	private LinkedTaskListNode tail;
@@ -8,6 +11,10 @@ public class LinkedTaskList extends AbstractTaskList {
 	public LinkedTaskList() {
 		
 		listsNumber++;
+	}
+	
+	public Iterator<Task> iterator() {
+		return new LinkedListIterator();
 	}
 	
 	public void add(Task task) {
@@ -22,7 +29,8 @@ public class LinkedTaskList extends AbstractTaskList {
 		}
 		tail = node;
 		String s = BEGINNING_OF_LIST_TASK_TITLE + node.value.getTitle();
-		node.value.setTitle(s);
+		if(!node.value.getTitle().contains(BEGINNING_OF_LIST_TASK_TITLE))
+			node.value.setTitle(s);
 		size++;
 	}
 	
@@ -56,28 +64,6 @@ public class LinkedTaskList extends AbstractTaskList {
 			prev = current;
 			current = current.next;
 		}
-	}
-	
-	public Task getTask(int index) {
-		if (index < 0 || size() <= index) 
-			throw new IndexOutOfBoundsException("The argument of \"getTask\" method must fulfill the following conditions: >= 0 && < size");
-		if (index <= (size-1)/2) {
-			int i = 0;
-			LinkedTaskListNode current = head;
-			while (current != null && index != i) {	 
-				current = current.next;
-				i++;
-			}
-			return current.value;		
-		} else {
-			int j = size-1;
-			LinkedTaskListNode current = tail;
-			while (current != null && index != j) {	 
-				current = current.previous;
-				j--;
-			}
-			return current.value;
-		}		
 	}
 	
 	public Task[] incoming(int from, int to) {
@@ -132,5 +118,34 @@ public class LinkedTaskList extends AbstractTaskList {
 			newList[j] = cloned;
 		}		
 		return newList;
+	}
+	
+	private class LinkedListIterator implements Iterator<Task> {
+		
+		LinkedTaskListNode current = head;
+		
+		int index = 0;
+		
+		@Override
+		public boolean hasNext(){
+			if(size == 0) {
+				System.out.println("This List is empty");
+			}
+			boolean result = (index < size)?true:false;
+			return result;
+		}
+		
+		@Override
+		public Task next(){
+			if(index == 0) {
+				index++;
+				return current.value;
+			}
+			if(current != null) {	 
+				current = current.next;
+			}
+			index++;
+			return current.value;
+		}
 	}
 }

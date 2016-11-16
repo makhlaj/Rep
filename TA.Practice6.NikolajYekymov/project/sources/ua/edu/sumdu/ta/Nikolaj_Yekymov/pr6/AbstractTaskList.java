@@ -26,7 +26,8 @@ abstract public class AbstractTaskList implements Serializable, java.lang.Iterab
 			return getDeepCloning(clonedList);
 		}
 		catch( CloneNotSupportedException ex) {
-			throw new InternalError();
+			ex.printStackTrace();
+			throw new InternalError("CloneNotSupportedException in the \"clone\" method");
 		}
 	}
 
@@ -47,7 +48,7 @@ abstract public class AbstractTaskList implements Serializable, java.lang.Iterab
 		return str;
 	}
 	
-	public boolean TaskListCompare(AbstractTaskList someList){
+	public boolean TaskListCompare(AbstractTaskList someList) {
 		boolean result = false;
 		String showResult = null;
 		if(this instanceof LinkedTaskList && someList instanceof LinkedTaskList || 
@@ -71,7 +72,7 @@ abstract public class AbstractTaskList implements Serializable, java.lang.Iterab
 	}
 	
 	private AbstractTaskList getDeepCloning(AbstractTaskList clonedList) {
-		try{
+		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
 			oos.writeObject(clonedList);
@@ -80,7 +81,8 @@ abstract public class AbstractTaskList implements Serializable, java.lang.Iterab
 			return (AbstractTaskList)ois.readObject();
 		}
 		catch(Exception ex) {
-			throw new InternalError();
+			ex.printStackTrace();
+			throw new InternalError("Exception in the \"getDeepCloning\" method");
 		}
 	}
 }

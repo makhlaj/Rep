@@ -22,8 +22,8 @@ public class Task implements Cloneable, Serializable {
    /**
 	* call setTitle method
 	* call setTime method
-	* @param title title variable initialization
-	* @param time time variable initialization
+	* @param title for the title variable initialization
+	* @param time for the time variable initialization
 	*/
 	public Task(String title, int time) {
 		setTitle(title);
@@ -33,10 +33,10 @@ public class Task implements Cloneable, Serializable {
    /**
 	* call setTitle method
 	* call setTime method
-	* @param title title variable initialization
-	* @param start start variable initialization
-	* @param end end variable initialization
-	* @param repeat repeat variable initialization
+	* @param title for the title variable initialization
+	* @param start for the start variable initialization
+	* @param end for the end variable initialization
+	* @param repeat for the repeat variable initialization
 	*/
 	public Task(String title, int start, int end, int repeat) {
 		setTitle(title);
@@ -51,7 +51,7 @@ public class Task implements Cloneable, Serializable {
 	}
 	
    /**
-	* @param title title variable initialization
+	* @param title for the title variable initialization
 	*/
 	public void setTitle(String title) {
 		if (title == null || title.isEmpty())
@@ -69,7 +69,7 @@ public class Task implements Cloneable, Serializable {
 	
    /**
 	* Set status for the Task
-	* @param active $isActive variable initialization
+	* @param active for the isActive variable initialization
 	*/
 	public void setActive(boolean active) {
 		isActive = active;
@@ -77,7 +77,7 @@ public class Task implements Cloneable, Serializable {
 
    /**
 	* Set notification time for the Task
-	* @param time time variable initialization
+	* @param time for the time variable initialization
 	* isRepeated variable initialization
 	*/
 	public void setTime(int time) {
@@ -89,9 +89,9 @@ public class Task implements Cloneable, Serializable {
 
    /**
 	* Set start, end, repeat interval of the notification time for the Task
-	* @param start start variable initialization
-	* @param end end variable initialization
-	* @param repeat repeat variable initialization
+	* @param start for the start variable initialization
+	* @param end for the end variable initialization
+	* @param repeat for the repeat variable initialization
 	* isRepeated variable initialization
 	*/
 	public void setTime(int start, int end, int repeat) {

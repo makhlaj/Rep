@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * This class describes the data type "Task", which contains information about the essence of the task, 
  * its status (active / inactive), time interval, through which it is needed to repeat the notification about it
- * @version    1.0    20 Oct 2016
+ * @version    6.0    17 Oct 2016
  * @author    Nikolaj Yekymov
  */
 public class Task implements Cloneable, Serializable {
@@ -157,7 +157,7 @@ public class Task implements Cloneable, Serializable {
 	
    /**
 	* @return the next notification time regarding the specified time
-	* @param time specified time 
+	* @param currentTime specified time 
 	*/
 	public int nextTimeAfter(int currentTime) {
 		int res = -1;
@@ -225,87 +225,5 @@ public class Task implements Cloneable, Serializable {
 	
 	public static void main(String[] args) {
 		
-		Task t = new Task("A",10);
-		Task t1 = new Task("B",10,14,2);
-		Task t2 = new Task("C",44);
-		
-		ArrayTaskList ar = new ArrayTaskList();
-		ar.add(t);
-		ar.add(t1);
-		ar.add(t2);
-		//Клон списка ar
-		ArrayTaskList ar1 = (ArrayTaskList)ar.clone();
-		
-		LinkedTaskList l = new LinkedTaskList();
-		//Перебор пустого списка
-		Iterator<Task> ls = l.iterator();
-		while(ls.hasNext()){
-			System.out.println(ls.next().getTitle());
-		}
-		
-		l.add(t);
-		l.add(t1);
-		l.add(t2);
-		//Клон списка l
-		LinkedTaskList l1 = (LinkedTaskList)l.clone();
-		
-		System.out.println();
-		System.out.println(ar.toString() + " ar before deleting Task B");
-		ar.remove(new Task("[EDUCTR][TA] B",10,14,2));
-		System.out.println(ar.size() + " size of ar after deleting");
-		System.out.println(ar.toString() + " ar after deleting");
-		
-		System.out.println(ar1.toString() + " ar1 before deleting Task A");
-		ar1.remove(new Task("[EDUCTR][TA] A",10));
-		System.out.println(ar1.size() + " size of ar1 after deleting");
-		System.out.println(ar1.toString() + " ar1 after deleting");
-		
-		System.out.println();
-		
-		System.out.println(l.toString() + " l before deleting Task C");
-		l.remove(new Task("[EDUCTR][TA] C",44));
-		System.out.println(l.size() + " size of l after deleting");
-		System.out.println(l.toString() + " l after deleting");
-		
-		System.out.println(l1.toString() + " l1 before deleting Task B");
-		l1.remove(new Task("[EDUCTR][TA] B",10,14,2));
-		System.out.println(l1.size() + " size of l1 after deleting");
-		System.out.println(l1.toString() + " l1 after deleting");
-		
-		System.out.println();
-		//сравниваем списки
-		System.out.println(l1.toString() + " l1 list");
-		System.out.println(ar.toString() + " ar list");
-		boolean comp = l1.TaskListCompare(ar);
-		
-		System.out.println();
-		
-		LinkedTaskList someL = new LinkedTaskList();
-		someL.add(t);
-		someL.add(t1);
-		someL.add(t2);
-		
-		l.add(t2);
-		System.out.println(l.toString() + " l list");
-		System.out.println(someL.toString() + " someL list");
-		boolean comp2 = someL.TaskListCompare(l);
-		
-		System.out.println();
-		someL.remove(t2);
-		System.out.println(l1.toString() + " l1 list");
-		System.out.println(someL.toString() + " someL list");
-		boolean comp3 = someL.TaskListCompare(l1);
-		
-		/*
-		Iterator<Task> ts = ar.iterator();
-		while(ts.hasNext()){
-			System.out.println(ts.next().getTitle());
-		}
-		
-		Iterator<Task> ls = l.iterator();
-		while(ls.hasNext()){
-			System.out.println(ls.next().getTitle());
-		}
-		*/
 	}
 }

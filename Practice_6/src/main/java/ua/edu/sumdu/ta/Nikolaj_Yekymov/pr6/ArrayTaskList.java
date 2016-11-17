@@ -144,6 +144,7 @@ public class ArrayTaskList extends AbstractTaskList implements Cloneable, Serial
 	private class ArrayListIterator implements Iterator<Task> {
 		
 		int index = 0;
+		int prevIndex = 0;
 		
 		@Override
 		public boolean hasNext(){
@@ -156,7 +157,18 @@ public class ArrayTaskList extends AbstractTaskList implements Cloneable, Serial
 		
 		@Override
 		public Task next(){
+			prevIndex = index;
 			return taskList[index++];
+		}
+		
+		@Override
+		public void remove() {
+			if(index > size)
+				throw new NullPointerException("Attempt to remove a nonexistent list item");
+			if(index <= 0 || index == prevIndex)
+				throw new IllegalStateException("The next method has not yet been called, or the remove method has already been called after the last call to the next method");
+			ArrayTaskList.this.remove(taskList[index-1]);
+			index--;
 		}
 	}
 }

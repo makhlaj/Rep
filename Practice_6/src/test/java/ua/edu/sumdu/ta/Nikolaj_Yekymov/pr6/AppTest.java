@@ -1,4 +1,4 @@
-package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr5;
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr6;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

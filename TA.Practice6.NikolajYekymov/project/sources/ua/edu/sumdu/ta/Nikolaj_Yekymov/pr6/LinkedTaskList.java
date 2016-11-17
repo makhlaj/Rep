@@ -125,6 +125,7 @@ public class LinkedTaskList extends AbstractTaskList implements Cloneable, Seria
 		LinkedTaskListNode current = head;
 		
 		int index = 0;
+		int prevIndex = 0;
 		
 		@Override
 		public boolean hasNext(){
@@ -137,15 +138,33 @@ public class LinkedTaskList extends AbstractTaskList implements Cloneable, Seria
 		
 		@Override
 		public Task next(){
+			prevIndex = index;
+			if (current == null) {
+				throw new NullPointerException("Attempt to apply to a nonexistent list item");
+			}
 			if(index == 0) {
 				index++;
 				return current.value;
-			}
-			if(current != null) {	 
+			} 
+			if(current.next != null)
 				current = current.next;
-			}
 			index++;
 			return current.value;
+		}
+		
+		@Override
+		public void remove() {
+			if(index > size)
+				throw new NullPointerException("Attempt to remove a nonexistent list item");
+			if(index <= 0 || index == prevIndex)
+				throw new IllegalStateException("The next method has not yet been called, or the remove method has already been called after the last call to the next method");
+			LinkedTaskList.this.remove(current.value);
+			if(index == 1) {
+				current = current.next;
+			} else {
+				current = current.previous;
+			}
+			index--;
 		}
 	}
 }

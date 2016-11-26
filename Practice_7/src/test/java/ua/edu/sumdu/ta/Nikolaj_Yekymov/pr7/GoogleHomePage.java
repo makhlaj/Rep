@@ -1,3 +1,5 @@
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr7;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

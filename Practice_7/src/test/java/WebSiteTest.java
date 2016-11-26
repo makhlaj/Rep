@@ -4,16 +4,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import java.util.concurrent.TimeUnit;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 public class WebSiteTest {
 
     private WebDriver driver;
-	private Map<String, String> expectedHashMap;
 
     @BeforeClass
     public static void geckoDriverInPath() {
@@ -54,7 +54,7 @@ public class WebSiteTest {
 
     private void positionsListChecking(Map<String, String> actualHashMap) {
 
-        expectedHashMap = new HashMap<String, String>();
+        Map<String, String> expectedHashMap = new HashMap<String, String>();
         expectedHashMap.put("IT Help Desk Engineer","Engineering");
         expectedHashMap.put("Senior Technical Solution Support Engineer","Customer Assurance");
         expectedHashMap.put("Control Inspector","Customer Assurance");

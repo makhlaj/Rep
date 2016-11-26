@@ -1,4 +1,7 @@
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,9 +11,9 @@ public class NetCrackerPage {
 
     private WebDriver driver;
     private Map<String, String> positionsList;
-	private WebElement sumySelect;
-	private WebElement positionsListElement;
-	private List<WebElement> positionsDivList;
+    private WebElement sumySelect;
+    private WebElement positionsListElement;
+    private List<WebElement> positionsDivList;
 
     public NetCrackerPage(WebDriver driver) {
         this.driver = driver;

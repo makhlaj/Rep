@@ -8,9 +8,9 @@ import java.util.List;
 public class GoogleResultPage {
 
     private WebDriver driver;
-	private WebElement searchLinks;
-	private List<WebElement> searchLinksList;
-	private WebDriver nextDriver;
+    private WebElement searchLinks;
+    private List<WebElement> searchLinksList;
+    private WebDriver nextDriver;
 
     public GoogleResultPage(WebDriver driver) {
         this.driver = driver;

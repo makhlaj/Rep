@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class GoogleHomePage {
 
     private WebDriver driver;
-	private WebElement googleSearchField;
-	private WebElement popUpMenu;
-	private List<WebElement> popUpList;
+    private WebElement googleSearchField;
+    private WebElement popUpMenu;
+    private List<WebElement> popUpList;
 
     public GoogleHomePage(WebDriver driver) {
         this.driver = driver;

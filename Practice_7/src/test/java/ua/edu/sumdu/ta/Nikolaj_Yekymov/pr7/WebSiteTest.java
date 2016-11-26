@@ -1,6 +1,5 @@
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,7 +14,7 @@ public class WebSiteTest {
     private WebDriver driver;
 	private Map<String, String> expectedHashMap;
 
-    @BeforeClass
+    @Before
     public static void geckoDriverInPath() {
         System.setProperty("webdriver.gecko.driver","./src/test/resources/geckodriver.exe");
     }

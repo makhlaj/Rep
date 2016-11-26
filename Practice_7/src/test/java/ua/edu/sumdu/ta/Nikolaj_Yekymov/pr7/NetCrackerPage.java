@@ -1,3 +1,5 @@
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr7;
+
 import org.openqa.selenium.*;
 import java.util.HashMap;
 import java.util.List;

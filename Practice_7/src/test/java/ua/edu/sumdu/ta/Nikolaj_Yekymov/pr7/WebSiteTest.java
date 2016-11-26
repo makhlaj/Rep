@@ -1,3 +1,5 @@
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr7;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

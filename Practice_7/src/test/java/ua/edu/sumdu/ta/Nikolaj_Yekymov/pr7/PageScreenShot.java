@@ -1,3 +1,5 @@
+package ua.edu.sumdu.ta.Nikolaj_Yekymov.pr7;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 

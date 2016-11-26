@@ -15,7 +15,7 @@ public class WebSiteTest {
 	private Map<String, String> expectedHashMap;
 
     @Before
-    public static void geckoDriverInPath() {
+    public void geckoDriverInPath() {
         System.setProperty("webdriver.gecko.driver","./src/test/resources/geckodriver.exe");
     }
 
